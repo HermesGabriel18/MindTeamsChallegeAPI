@@ -39,6 +39,7 @@ class FreshSeederCommand extends Command
     {
         $this->call('migrate:fresh');
         $this->call('db:seed_constants');
+        $this->call('db:seed_users');
 
         return 0;
     }
