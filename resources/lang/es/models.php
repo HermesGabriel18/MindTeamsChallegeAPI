@@ -11,4 +11,10 @@ return [
         'regular' => 'Regular'
     ],
 
+    // U
+
+    'user' => [
+        'user' => 'Usuario|Usuarios',
+    ],
+
 ];
