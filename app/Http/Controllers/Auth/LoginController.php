@@ -70,8 +70,32 @@ class LoginController extends Controller
 
         $user = $this->userRepository->loadRelations(auth()->user());
 
-        $data = new UserResource($user);
+        $data = $this->userRepository->getJWTData($user);
 
-        return $this->dataResponse($this->buildMessage('logged'), $data, Response::HTTP_OK);
+        return $this->dataResponse($this->buildMessage('logged'), $data, Response::HTTP_ACCEPTED);
+    }
+
+    /**
+     * Log out of the application.
+     *
+     * @return JsonResponse
+     */
+    public function logout(): JsonResponse
+    {
+
+        if (Auth::check()) {
+            /** @var User $user */
+            $user = Auth::user();
+            $user->tokens()
+                ->where('id', Auth::id())
+                ->delete();
+            $user->token = null;
+        }
+
+        session()->invalidate();
+
+        $data = $this->userRepository->getJWTData($user);
+
+        return $this->dataResponse($this->buildMessage('logout'), $data, Response::HTTP_ACCEPTED);
     }
 }

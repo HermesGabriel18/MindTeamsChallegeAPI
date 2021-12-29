@@ -31,3 +31,17 @@ function tName(?Model $model = null): ?string
 
     return trans("models.$modelName.$name");
 }
+
+/**
+ * Translate a Model
+ *
+ * @param string $model
+ * @param bool $plural
+ * @return string
+ */
+function modelTitle(string $model, $plural = false): string
+{
+    $modelName = Str::snake(class_basename($model));
+
+    return trans_choice("models.$modelName.$modelName", $plural ? 2 : 1);
+}
