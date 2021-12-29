@@ -12,7 +12,7 @@ use Illuminate\Http\JsonResponse;
 class UserController extends Controller
 {
     /**
-     * Get User list.
+     * Get Users list.
      *
      * @return JsonResponse
      */

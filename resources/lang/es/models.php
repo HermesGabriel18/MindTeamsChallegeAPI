@@ -2,6 +2,12 @@
 
 return [
 
+    // C
+
+    'client' => [
+        'client' => 'Cliente|Clientes',
+    ],
+
     // R
 
     'role' => [

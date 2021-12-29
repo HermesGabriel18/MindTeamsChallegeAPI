@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Rules\NameRule;
-use Illuminate\Validation\Rule;
 
 /**
  * Class UserRequest
@@ -39,7 +38,6 @@ class UserRequest extends BaseFormRequest
             return [
                 'role_id' => 'exists:roles,id',
                 'name' => ['string', 'max:255', new NameRule()],
-                'email' => ['email', 'max:255', Rule::unique('users')->ignore($this->get('id'))],
                 'locale' => 'string|max:2',
                 'password' => 'string|min:8|confirmed',
             ];
