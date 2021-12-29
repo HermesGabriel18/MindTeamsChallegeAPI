@@ -37,19 +37,6 @@ class UserRepository
 
     /**
      * @param User $user
-     * @return array
-     */
-    public function getJWTData(User $user): array
-    {
-        return [
-            'token' => Str::after($user->createToken($user->email)->plainTextToken, '|'),
-            'token_type' => 'bearer',
-            'user' => new UserResource($user),
-        ];
-    }
-
-    /**
-     * @param User $user
      * @return User
      */
     public function loadRelations(User $user): User
