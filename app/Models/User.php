@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Interfaces\HasDisabledInterface;
+use App\Traits\HasDisabled;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\Eloquent\Builder;
@@ -14,12 +16,14 @@ use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements
-    HasLocalePreference
+    HasLocalePreference,
+    HasDisabledInterface
 {
     use HasApiTokens,
         HasFactory,
         Notifiable,
-        SoftDeletes;
+        SoftDeletes,
+        HasDisabled;
 
     /**
      * The attributes that are mass assignable.
