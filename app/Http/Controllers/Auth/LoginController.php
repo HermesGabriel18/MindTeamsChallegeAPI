@@ -15,6 +15,10 @@ use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
+
+    protected bool $onlyAction = true;
+    protected string $modelName = 'user';
+
      /*
     |--------------------------------------------------------------------------
     | Login Controller
