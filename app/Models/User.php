@@ -2,15 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Translation\HasLocalePreference;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements
+    HasLocalePreference
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens,
+        HasFactory,
+        Notifiable,
+        SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -18,9 +27,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'role_id',
         'name',
         'email',
         'password',
+        'locale'
     ];
 
     /**
@@ -39,6 +50,56 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
+        'role_id' => 'int',
         'email_verified_at' => 'datetime',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+    }
+
+     /**
+     * @param $value
+     */
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value); // bcrypt
+    }
+
+    /**
+     * @param $value
+     */
+    public function setEmailAttribute($value)
+    {
+        $this->attributes['email'] = Str::lower(trim($value));
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    /**
+     * Get the preferred locale of the entity.
+     *
+     * @return string|null
+     */
+    public function preferredLocale(): ?string
+    {
+        return $this->locale;
+    }
+
+    /**
+     * @param Builder $builder
+     * @param array $roleIds
+     * @return Builder
+     */
+    public function scopeByRole(Builder $builder, array $roleIds): Builder
+    {
+        return $builder->whereIn('role_id', $roleIds);
+    }
 }
