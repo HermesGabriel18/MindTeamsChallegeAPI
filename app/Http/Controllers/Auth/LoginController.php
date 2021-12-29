@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Repositories\UserRepository;
 use App\Rules\NotDisabledRule;
@@ -72,6 +73,18 @@ class LoginController extends Controller
         $data = $this->userRepository->getJWTData($user);
 
         return $this->dataResponse($this->buildMessage('logged'), $data, Response::HTTP_ACCEPTED);
+    }
+
+    /**
+     * @return JsonResponse
+     */
+    public function me(): JsonResponse
+    {
+        $this->onlyAction = false;
+
+        $user = $this->userRepository->loadRelations(auth()->user());
+
+        return $this->showResponse(new UserResource($user));
     }
 
     /**

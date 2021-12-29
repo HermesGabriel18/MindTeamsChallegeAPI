@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-use App\Interfaces\HasCreatedByInterface;
 use App\Interfaces\HasDisabledInterface;
 use App\Interfaces\HasNameInterface;
 use App\Traits\Filterable;
-use App\Traits\HasCreatedBy;
 use App\Traits\HasDisabled;
 use App\Traits\HasName;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,13 +18,11 @@ use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements
-    HasCreatedByInterface,
     HasDisabledInterface,
     HasLocalePreference,
     HasNameInterface
 {
     use HasApiTokens,
-        HasCreatedBy,
         HasDisabled,
         HasFactory,
         HasName,

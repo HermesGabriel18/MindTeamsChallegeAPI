@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\RoleController;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
      * Roles
      */
     Route::apiResource('roles', RoleController::class)->only(['index']);
+
+    /**
+     * Users
+     */
+    Route::get('users/me', [LoginController::class, 'me'])->name('users.me');
+    Route::apiResource('users', UserController::class);
 
 });
 

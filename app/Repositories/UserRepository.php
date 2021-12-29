@@ -30,6 +30,7 @@ class UserRepository
      */
     public function update(User $user, array $data): User
     {
+        // var_dump($user);
         $user->update($data);
 
         return $user;
