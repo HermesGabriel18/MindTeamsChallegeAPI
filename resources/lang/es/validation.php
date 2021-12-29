@@ -134,6 +134,13 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'id' => 'ID',
+        'name' => 'Nombre',
+        'role_id' => 'Rol',
+        'email' => 'Email',
+
+        'disabled' => 'Desactivado'
+    ],
 
 ];
