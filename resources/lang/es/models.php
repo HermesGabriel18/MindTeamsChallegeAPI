@@ -6,7 +6,7 @@ return [
 
     'role' => [
         'role' => 'Role|Roles',
-        'super_admin' => 'Super Admin',
+        'super_admin' => 'Súper Admin',
         'admin' => 'Admin',
         'regular' => 'Regular'
     ],
