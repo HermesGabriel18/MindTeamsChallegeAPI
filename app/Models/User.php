@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Interfaces\HasCreatedByInterface;
 use App\Interfaces\HasDisabledInterface;
+use App\Interfaces\HasNameInterface;
+use App\Traits\HasCreatedBy;
 use App\Traits\HasDisabled;
+use App\Traits\HasName;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Translation\HasLocalePreference;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,14 +19,18 @@ use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements
+    HasCreatedByInterface,
+    HasDisabledInterface,
     HasLocalePreference,
-    HasDisabledInterface
+    HasNameInterface
 {
     use HasApiTokens,
+        HasCreatedBy,
+        HasDisabled,
         HasFactory,
+        HasName,
         Notifiable,
-        SoftDeletes,
-        HasDisabled;
+        SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -95,15 +102,5 @@ class User extends Authenticatable implements
     public function preferredLocale(): ?string
     {
         return $this->locale;
-    }
-
-    /**
-     * @param Builder $builder
-     * @param array $roleIds
-     * @return Builder
-     */
-    public function scopeByRole(Builder $builder, array $roleIds): Builder
-    {
-        return $builder->whereIn('role_id', $roleIds);
     }
 }
