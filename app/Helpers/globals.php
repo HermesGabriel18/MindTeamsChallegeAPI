@@ -45,3 +45,15 @@ function modelTitle(string $model, $plural = false): string
 
     return trans_choice("models.$modelName.$modelName", $plural ? 2 : 1);
 }
+
+/**
+ * Dates must be always have formats 'Y-m-d' or 'Y/m/d'
+ * @param $value
+ * @return bool
+ */
+function isDateString($value): bool
+{
+    return $value
+        && !is_numeric($value)
+        && (substr_count($value, '-') === 2 || substr_count($value, '/') === 2);
+}

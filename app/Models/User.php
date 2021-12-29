@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Interfaces\HasCreatedByInterface;
 use App\Interfaces\HasDisabledInterface;
 use App\Interfaces\HasNameInterface;
+use App\Traits\Filterable;
 use App\Traits\HasCreatedBy;
 use App\Traits\HasDisabled;
 use App\Traits\HasName;
@@ -29,6 +30,7 @@ class User extends Authenticatable implements
         HasDisabled,
         HasFactory,
         HasName,
+        Filterable,
         Notifiable,
         SoftDeletes;
 
