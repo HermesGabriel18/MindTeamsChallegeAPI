@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AssignmentRequest;
 use App\Http\Resources\AssignmentResource;
+use App\Jobs\AddTransactionJob;
+use App\Jobs\RemoveTransactionJob;
 use App\Models\Assignment;
 use App\Repositories\AssignmentRepository;
 use Illuminate\Http\JsonResponse;
@@ -50,6 +52,8 @@ class AssignmentController extends Controller
     {
         $assignment = $assignmentRepository->create($request->validated());
 
+        AddTransactionJob::dispatch(($assignment));
+
         return $this->storeResponse(new AssignmentResource($assignment));
     }
 
@@ -63,6 +67,8 @@ class AssignmentController extends Controller
     public function destroy(Assignment $assignment): JsonResponse
     {
         $this->destroyModel($assignment);
+
+        RemoveTransactionJob::dispatch(($assignment));
 
         return $this->destroyResponse(new AssignmentResource($assignment));
     }
