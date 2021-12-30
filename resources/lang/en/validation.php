@@ -147,6 +147,7 @@ return [
 
         'user_id' => [
             'must_be_regular' => 'Must be role Regular',
+            'already_assigned' => 'Already assigned to this project',
             'max_assignments' => 'Has max number of assignments',
         ],
     ],

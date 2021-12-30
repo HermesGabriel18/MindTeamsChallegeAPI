@@ -124,6 +124,7 @@ return [
 
         'user_id' => [
             'must_be_regular' => 'Debe ser rol Regular',
+            'already_assigned' => 'Ya asignado a este proyecto',
             'max_assignments' => 'Tiene el número máximo de asignaciones',
         ],
     ],

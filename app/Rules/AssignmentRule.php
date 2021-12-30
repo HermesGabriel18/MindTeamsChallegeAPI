@@ -11,21 +11,21 @@ class AssignmentRule implements Rule
 {
     const MAX_ASSIGNMENTS = 2; // Max assignments per user.
     const MAX_ASSIGNMENTS_MESSAGE = 'max_assignments';
+    const ALREADY_ASSIGNED = 'already_assigned';
     const MUST_BE_REGULAR_MESSAGE = 'must_be_regular';
 
     private string $value;
     private string $attribute;
-    private string $column;
+    private string $project_id;
 
      /**
      * Create a new rule instance.
      *
-     * @param string $table
-     * @param string $column
+     * @param int $project_id
      */
-    public function __construct($column = 'id')
+    public function __construct($project_id)
     {
-        $this->column = $column;
+        $this->project_id = $project_id;
     }
 
     /**
@@ -44,10 +44,18 @@ class AssignmentRule implements Rule
         $this->attribute = $attribute;
         $this->value = $value;
 
-        $user = User::where($this->column, $this->value)->first();
+        $user = User::where('id', $this->value)->first();
 
         if(!hasRole(Role::REGULAR, false, $user)) {
             $this->message = self::MUST_BE_REGULAR_MESSAGE;
+            return false;
+        }
+
+        $assignments = Assignment::where($this->attribute, $this->value)
+            ->where('project_id', $this->project_id)->count();
+
+        if($assignments > 0) {
+            $this->message = self::ALREADY_ASSIGNED;
             return false;
         }
 

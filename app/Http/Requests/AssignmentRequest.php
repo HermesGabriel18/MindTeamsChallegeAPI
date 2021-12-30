@@ -26,8 +26,10 @@ class AssignmentRequest extends BaseFormRequest
      */
     public function rules(): array
     {
+        $project_id = $this->get('project_id') ?? 1;
+
         return [
-            'user_id' => ['required', 'exists:users,id', new AssignmentRule()],
+            'user_id' => ['required', 'exists:users,id', new AssignmentRule($project_id)],
             'project_id' => 'required|exists:projects,id',
         ];
     
