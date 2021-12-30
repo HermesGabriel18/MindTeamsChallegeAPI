@@ -14,11 +14,11 @@ class TransactionType extends Model implements IsConstantInterface
     const ADDED = 1;
     const REMOVED = 2;
 
-    // /**
-    //  * @return HasMany
-    //  */
-    // public function transactions(): HasMany
-    // {
-    //     return $this->hasMany(Transaction::class);
-    // }
+    /**
+     * @return HasMany
+     */
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }
