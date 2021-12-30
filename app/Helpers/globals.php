@@ -4,6 +4,25 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 /**
+ * Used by Controller that manage Polymorphic models (as Disabled) when face 'update' method.
+ * This route has the form as '<type>/<id>/model'. So, this method helps to determine the class name of the model
+ * by the <type> passed in the url.
+ *
+ * @param string $type
+ *
+ * @return string string
+ */
+function classByString(string $type): string
+{
+    return Str::of($type)
+        ->singular()
+        ->studly()
+        ->start('App\\Models\\')
+        ->__toString();
+}
+
+
+/**
  * Translate given attribute name
  *
  * @param $attribute

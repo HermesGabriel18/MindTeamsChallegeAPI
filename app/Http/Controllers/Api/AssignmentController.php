@@ -11,6 +11,8 @@ use Illuminate\Http\JsonResponse;
 
 class AssignmentController extends Controller
 {
+    protected bool $female = true;
+
     /**
      * Get Assignment list.
      *

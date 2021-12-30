@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AssignmentController;
 use App\Http\Controllers\Api\ClientController;
+use App\Http\Controllers\Api\DisabledController;
 use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\UserController;
@@ -34,6 +35,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
      * Clients
      */
     Route::apiResource('clients', ClientController::class);
+
+    /**
+     * Disable
+     */
+    Route::put('disable/{model}/{id}', [DisabledController::class, 'update'])->name('disabled.update');
 
     /**
      * Projects
