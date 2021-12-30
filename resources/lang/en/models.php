@@ -8,6 +8,12 @@ return [
         'client' => 'Client|Clients',
     ],
 
+    // P
+
+    'project' => [
+        'project' => 'Project|Projects',
+    ],
+
     // R
 
     'role' => [

@@ -5,10 +5,10 @@ namespace App\Http\Requests;
 use App\Rules\NameRule;
 
 /**
- * Class ClientRequest
+ * Class ProjectRequest
  * @package App\Http\Requests
  */
-class ClientRequest extends BaseFormRequest
+class ProjectRequest extends BaseFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,8 +27,15 @@ class ClientRequest extends BaseFormRequest
      */
     public function rules(): array
     {
-        return [
-            'name' => ['required', 'string', 'max:255', new NameRule()]
-        ];
+        if ($this->isMethod('post')) {
+            return [
+                'client_id' => 'required|exists:clients,id',
+                'name' => ['required', 'string', 'max:255', new NameRule()]
+            ];
+        } else {
+            return [
+                'name' => ['string', 'max:255', new NameRule()]
+            ];
+        }
     }
 }

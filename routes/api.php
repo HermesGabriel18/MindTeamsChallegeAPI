@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ClientController;
+use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\LoginController;
@@ -27,6 +28,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
      * Clients
      */
     Route::apiResource('clients', ClientController::class);
+
+    /**
+     * Projects
+     */
+    Route::apiResource('projects', ProjectController::class);
 
     /**
      * Roles
