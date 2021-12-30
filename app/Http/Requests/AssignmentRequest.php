@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\AssignmentRule;
 /**
  * Class ProjectRequest
  * @package App\Http\Requests
@@ -26,7 +27,7 @@ class AssignmentRequest extends BaseFormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|exists:users,id',
+            'user_id' => ['required', 'exists:users,id', new AssignmentRule()],
             'project_id' => 'required|exists:projects,id',
         ];
     

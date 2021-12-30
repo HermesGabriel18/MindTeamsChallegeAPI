@@ -121,6 +121,11 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+
+        'user_id' => [
+            'must_be_regular' => 'Debe ser rol Regular',
+            'max_assignments' => 'Tiene el número máximo de asignaciones',
+        ],
     ],
 
     /*
@@ -137,6 +142,7 @@ return [
     'attributes' => [
         'id' => 'ID',
         'name' => 'Nombre',
+        'user_id' => 'Usuario',
         'role_id' => 'Rol',
         'email' => 'Email',
 
