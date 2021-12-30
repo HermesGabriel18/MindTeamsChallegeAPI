@@ -31,6 +31,10 @@ return [
 
     // T
 
+    'transaction' => [
+        'transaction' => 'Transaction|Transactions'
+    ],
+
     'transaction_type' => [
         'transaction_type' => 'Transaction Type|Transaction Types',
         'added' => 'Added',

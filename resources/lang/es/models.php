@@ -31,7 +31,11 @@ return [
 
      // T
 
-     'transaction_type' => [
+    'transaction' => [
+        'transaction' => 'Transacción|Transacciones'
+    ],
+
+    'transaction_type' => [
         'transaction_type' => 'Tipo de transacción|Tipos de transacciones',
         'added' => 'Agregó',
         'removed' => 'Removió'

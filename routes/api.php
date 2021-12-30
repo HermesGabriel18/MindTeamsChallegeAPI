@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\DisabledController;
 use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\RoleController;
+use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\TransactionTypeController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\LoginController;
@@ -55,6 +56,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     /**
      * Transactions
      */
+    Route::apiResource('transactions', TransactionController::class)->only(['index', 'show']);
     Route::apiResource('transaction_types', TransactionTypeController::class)->only(['index']);
 
     /**

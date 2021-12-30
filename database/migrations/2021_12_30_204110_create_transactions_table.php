@@ -16,8 +16,8 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('transaction_type_id')->index('transactions_transaction_type_id_foreign');
-            $table->unsignedBigInteger('user_id')->index('assignments_user_id_foreign');
-            $table->unsignedBigInteger('project_id')->index('assignments_project_id_foreign');
+            $table->unsignedBigInteger('user_id')->index('transactions_user_id_foreign');
+            $table->unsignedBigInteger('project_id')->index('transactions_project_id_foreign');
             $table->string('details')->nullable();
             $table->timestamps();
             $table->softDeletes();
