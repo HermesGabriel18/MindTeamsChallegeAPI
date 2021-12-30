@@ -2,6 +2,12 @@
 
 return [
 
+    // A
+
+    'assignment' => [
+        'assignment' => 'Asignación|Asignaciones',
+    ],
+
     // C
 
     'client' => [
