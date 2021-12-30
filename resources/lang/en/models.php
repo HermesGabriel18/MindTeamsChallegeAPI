@@ -29,6 +29,14 @@ return [
         'regular' => 'Regular'
     ],
 
+    // T
+
+    'transaction_type' => [
+        'transaction_type' => 'Transaction Type|Transaction Types',
+        'added' => 'Added',
+        'removed' => 'Removed'
+    ],
+
     // U
 
     'user' => [
