@@ -16,6 +16,7 @@ class ClientResource extends ApiResource
             'id' => $this->id,
             'class_name' => $this->getClassName(),
             'name' => $this->name,
+            'disabled' => optional($this->disabled)->toDateString(),
             'deleted_at' => $this->when($this->deleted_at, optional($this->deleted_at)->toDateString())
         ];
     }

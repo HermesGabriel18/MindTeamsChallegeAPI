@@ -19,8 +19,8 @@ class ProjectResource extends ApiResource
             'class_name' => $this->getClassName(),
             'client_id' => $this->client_id,
             'name' => $this->name,
-            'deleted_at' => $this->when($this->deleted_at, optional($this->deleted_at)->toDateString()),
             'disabled' => optional($this->disabled)->toDateString(),
+            'deleted_at' => $this->when($this->deleted_at, optional($this->deleted_at)->toDateString()),
             'client' => $this->when($this->client_id, new ClientResource($this->whenLoaded('client')))
         ];
     }
