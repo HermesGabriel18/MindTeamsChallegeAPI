@@ -21,8 +21,7 @@ class TransactionController extends Controller
         $transaction = Transaction::filter(request()->all())
             ->getOrPaginate();
 
-        return $this->indexResponse(TransactionResource::collection($transaction
-            ->load('user', 'project', 'createdBy')));
+        return $this->indexResponse(TransactionResource::collection($transaction));
     }
 
     /**
@@ -34,8 +33,7 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction): JsonResponse
     {
-        return $this->showResponse(new TransactionResource($transaction
-            ->load('user', 'project', 'createdBy')));
+        return $this->showResponse(new TransactionResource($transaction));
     }
 
 }
