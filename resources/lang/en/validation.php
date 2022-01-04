@@ -144,6 +144,12 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+
+        'user_id' => [
+            'must_be_regular' => 'Must be role Regular',
+            'already_assigned' => 'Already assigned to this project',
+            'max_assignments' => 'Has max number of assignments',
+        ],
     ],
 
     /*
@@ -157,6 +163,14 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'id' => 'ID',
+        'name' => 'Name',
+        'user_id' => 'User',
+        'role_id' => 'Role',
+        'email' => 'Email',
+
+        'disabled' => 'Disabled'
+    ],
 
 ];
