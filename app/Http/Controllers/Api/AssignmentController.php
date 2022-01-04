@@ -66,9 +66,8 @@ class AssignmentController extends Controller
      */
     public function destroy(Assignment $assignment): JsonResponse
     {
-        $this->destroyModel($assignment);
-
         RemoveTransactionJob::dispatch(($assignment));
+        $this->destroyModel($assignment);
 
         return $this->destroyResponse(new AssignmentResource($assignment));
     }
