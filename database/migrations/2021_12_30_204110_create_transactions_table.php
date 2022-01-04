@@ -20,7 +20,6 @@ class CreateTransactionsTable extends Migration
             $table->unsignedBigInteger('project_id')->index('transactions_project_id_foreign');
             $table->string('details')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

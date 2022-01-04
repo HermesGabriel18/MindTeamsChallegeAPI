@@ -20,7 +20,6 @@ class AssignmentResource extends ApiResource
             'class_name' => $this->getClassName(),
             'user_id' => $this->user_id,
             'project_id' => $this->project_id,
-            'deleted_at' => $this->when($this->deleted_at, optional($this->deleted_at)->toDateString()),
             'user' => $this->when($this->user_id, new UserResource($this->whenLoaded('user'))),
             'project' => $this->when($this->project_id, new ProjectResource($this->whenLoaded('project')))
         ];

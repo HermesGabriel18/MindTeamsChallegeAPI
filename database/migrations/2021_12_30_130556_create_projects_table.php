@@ -19,7 +19,6 @@ class CreateProjectsTable extends Migration
             $table->string('name');
             $table->dateTime('disabled')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

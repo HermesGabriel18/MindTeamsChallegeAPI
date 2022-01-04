@@ -2,13 +2,11 @@
 
 namespace App\Traits;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use ReflectionClass;
 
 trait IsConstant
 {
-    use SoftDeletes;
 
     /**
      * Appends getLabelAttribute method

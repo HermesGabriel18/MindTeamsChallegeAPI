@@ -14,9 +14,9 @@ class AddForeignKeyToTransactionsTable extends Migration
     public function up()
     {
         Schema::table('transactions', function (Blueprint $table) {
-            $table->foreign('transaction_type_id')->references('id')->on('transaction_types')->onUpdate('NO ACTION')->onDelete('NO ACTION');
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('NO ACTION')->onDelete('NO ACTION');
-            $table->foreign('project_id')->references('id')->on('projects')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+            $table->foreign('transaction_type_id')->references('id')->on('transaction_types')->onUpdate('NO ACTION')->onDelete('CASCADE');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('NO ACTION')->onDelete('CASCADE');
+            $table->foreign('project_id')->references('id')->on('projects')->onUpdate('NO ACTION')->onDelete('CASCADE');
         });
     }
 

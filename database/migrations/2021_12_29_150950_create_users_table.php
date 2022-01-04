@@ -25,7 +25,6 @@ class CreateUsersTable extends Migration
             $table->string('token')->nullable()->unique();
             $table->dateTime('disabled')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

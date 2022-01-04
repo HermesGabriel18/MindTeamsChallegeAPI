@@ -18,7 +18,6 @@ class CreateAssignmentsTable extends Migration
             $table->unsignedBigInteger('user_id')->index('assignments_user_id_foreign');
             $table->unsignedBigInteger('project_id')->index('assignments_project_id_foreign');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

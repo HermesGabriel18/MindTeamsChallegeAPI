@@ -9,7 +9,6 @@ use App\Traits\HasDisabled;
 use App\Traits\HasName;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Client extends Model implements
     HasDisabledInterface,
@@ -18,8 +17,7 @@ class Client extends Model implements
     use Filterable,
         HasDisabled,
         HasFactory,
-        HasName,
-        SoftDeletes;
+        HasName;
 
     /**
      * The attributes that are mass assignable.

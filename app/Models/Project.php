@@ -10,7 +10,6 @@ use App\Traits\HasName;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Project extends Model implements
     HasDisabledInterface,
@@ -19,8 +18,7 @@ class Project extends Model implements
     use HasDisabled,
         HasFactory,
         HasName,
-        Filterable,
-        SoftDeletes;
+        Filterable;
 
     /**
      * The attributes that are mass assignable.

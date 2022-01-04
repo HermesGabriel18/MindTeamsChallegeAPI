@@ -23,7 +23,6 @@ class UserResource extends ApiResource
             'email_verified_at' => optional($this->email_verified_at)->toDateTimeString(),
             'locale' => $this->locale,
             'disabled' => optional($this->disabled)->toDateString(),
-            'deleted_at' => $this->when($this->deleted_at, optional($this->deleted_at)->toDateString()),
             'role' => ConstantsService::toResource($this->resource, 'role')
         ];
     }

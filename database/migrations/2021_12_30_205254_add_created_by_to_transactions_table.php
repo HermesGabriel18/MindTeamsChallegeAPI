@@ -15,7 +15,7 @@ class AddCreatedByToTransactionsTable extends Migration
     {
         Schema::table('transactions', function (Blueprint $table) {
             $table->foreignId('created_by')->nullable()->after('id');
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('CASCADE');
         });
     }
 
